@@ -7,11 +7,11 @@ def get_all(db: Session):
     return db.query(models.MedicalSpecialty).all()
 
 def create(request: schemas.DoctorCreate, db: Session):
-    new_doctor = models.MedicalSpecialty(**request.dict())
-    db.add(new_doctor)
+    new_MedicalSpecialty = models.MedicalSpecialty(**request.dict())
+    db.add(new_MedicalSpecialty)
     db.commit()
-    db.refresh(new_doctor)
-    return new_doctor
+    db.refresh(new_MedicalSpecialty)
+    return new_MedicalSpecialty
 
 def show(id: int, db: Session):
     medicalspeciality = db.query(models.MedicalSpecialty).filter(models.MedicalSpecialty.id == id).first() #Corrected model
