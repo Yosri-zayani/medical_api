@@ -14,24 +14,24 @@ def create(request: schemas.ResearchPaperCreate, db: Session):
     return new_research_papers
 
 def show(id: int, db: Session):
-    research_papers = db.query(models.ResearchPaper).filter(models.ResearchPaper.id == id).first() #Corrected model
+    research_papers = db.query(models.ResearchPaper).filter(models.ResearchPaper.id == id).first()
     if not research_papers:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"ResearchPaper with the id {id} is not available")
     return research_papers
 
-def update(id: int, request: schemas.ResearchPaperCreate, db: Session):  # Use ResearchPaperCreate or a dedicated ResearchPaperUpdate schema
-    research_papers = db.query(models.ResearchPaper).filter(models.ResearchPaper.id == id) #Corrected model
+def update(id: int, request: schemas.ResearchPaperCreate, db: Session):
+    research_papers = db.query(models.ResearchPaper).filter(models.ResearchPaper.id == id)
     if not research_papers.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"ResearchPaper with id {id} not found")
 
-    research_papers.update(request.dict())  # Make sure 'id' is not in request.dict() if using ResearchPaperCreate
+    research_papers.update(request.dict())
     db.commit()
-    return 'updated'  # Or return the updated research_papers object
+    return 'updated'
 
 def destroy(id: int, db: Session):
-    research_papers = db.query(models.ResearchPaper).filter(models.ResearchPaper.id == id) #Corrected model
+    research_papers = db.query(models.ResearchPaper).filter(models.ResearchPaper.id == id)
     if not research_papers.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"ResearchPaper with id {id} not found")

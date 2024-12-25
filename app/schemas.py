@@ -7,7 +7,6 @@ class AppointmentCreate(BaseModel):
     service_id: int
     appointment_time: datetime
     status: str = "scheduled"  # Default status
-    notes: str = None  # Optional notes
 
 
 class Appointment(AppointmentCreate):

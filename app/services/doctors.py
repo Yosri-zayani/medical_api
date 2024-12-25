@@ -14,14 +14,14 @@ def create(request: schemas.DoctorCreate, db: Session):
     return new_doctor
 
 def show(id: int, db: Session):
-    doctor = db.query(models.Doctor).filter(models.Doctor.id == id).first() #Corrected model
+    doctor = db.query(models.Doctor).filter(models.Doctor.id == id).first()
     if not doctor:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Doctor with the id {id} is not available")
     return doctor
 
 def update(id: int, request: schemas.DoctorCreate, db: Session):  # Use DoctorCreate or a dedicated DoctorUpdate schema
-    doctor = db.query(models.Doctor).filter(models.Doctor.id == id) #Corrected model
+    doctor = db.query(models.Doctor).filter(models.Doctor.id == id)
     if not doctor.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Doctor with id {id} not found")
@@ -31,7 +31,7 @@ def update(id: int, request: schemas.DoctorCreate, db: Session):  # Use DoctorCr
     return 'updated'  # Or return the updated doctor object
 
 def destroy(id: int, db: Session):
-    doctor = db.query(models.Doctor).filter(models.Doctor.id == id) #Corrected model
+    doctor = db.query(models.Doctor).filter(models.Doctor.id == id)
     if not doctor.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Doctor with id {id} not found")
