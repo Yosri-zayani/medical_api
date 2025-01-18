@@ -3,3 +3,4 @@ uvicorn
 sqlalchemy 
 alembic == 1.14.0
 python-dotenv
+argon2-cffi
