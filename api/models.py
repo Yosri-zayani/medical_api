@@ -16,8 +16,7 @@ class Patient(Base):
     date_of_birth = Column(DateTime)
     address = Column(String)
     medical_history = Column(Text)
-    password = Column(String)  # Add this line
-
+    password = Column(String)  
     appointments = relationship("Appointment", back_populates="patient")
 
 
