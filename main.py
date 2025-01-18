@@ -1,6 +1,6 @@
-# main.py
+# app.py
 from fastapi import FastAPI
-from app.routes import appointments , patients , doctors , medical_speciality , medical_department , medical_services , research_papers
+from api.routes import appointments , patients , doctors , medical_speciality , medical_department , medical_services , research_papers
 
 
 app = FastAPI()
@@ -21,6 +21,9 @@ app.include_router(research_papers.router)
 async def root():
     return {"message": "Welcome to the Hospital API!"}
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)
 
 
 
